@@ -1,0 +1,26 @@
+.Product {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgb(32, 33, 44);
+    color: whitesmoke;
+    margin-left: 20px;
+}
+
+.Variants {
+    width: 30vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    // align-items: center;
+}
+
+.Variant {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
