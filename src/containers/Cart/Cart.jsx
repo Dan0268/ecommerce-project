@@ -16,64 +16,54 @@ const Cart = () => {
             const data = await getProducts();
             setProducts(data);
             const cartData = await getRecord("cart", cartId);
-            setProductsInCart(cartData.products);    
-        }; 
-        getData();               
+            setProductsInCart(cartData.products);
+        };
+        getData();
     }, []);
 
-    let productIndex = 0;
-    let varIndex = 0;
+
+    
+    // console.log("productsInCart", productsInCart);
+
+    // let productIndex = 0;
+    // let varIndex = 0;
 
     const itemIndex = (queryItem) => {
-        const indexFinder = products.findIndex((item, index) => item.Id == queryItem);
+        const indexFinder = products.findIndex((item, index) => item.id === queryItem);
         return indexFinder;
     };
     
 
     const variantIndex = (queryIndex, queryItem) => {
-        const variants = products[queryIndex].variants
-        console.log(variants);
-        return variants.findIndex((item, index) => item.variant == queryItem);
+        const variants = products[queryIndex].variants;
+        return variants.findIndex((item, index) => item.variant === queryItem);
     }
 
-    const mapCart = () => {               
-        productsInCart.map(product => {
-        productIndex = itemIndex(product.productId);
-        varIndex = variantIndex(productIndex, product.variant);
-        console.log(product.variant);
-        console.log(productIndex);
-        console.log(varIndex);
-        return (
-            <>
-            <CartCard
-        key={products[productIndex].id}
-        product={products[productIndex]} 
-        quantity={product.quantity}
-        variant={product.variant}
-        // imgLink={""}
-        imgLink={products[productIndex].variants[varIndex].imgLink}
-        />
-        </>)}
-        )};
-
-        // mapCart();
         
-    
-        // <CartCard
-        // key={products[productIndex].id}
-        // product={products[productIndex]} 
-        // quantity={product.quantity}
-        // variant={product.variant}
-        // // imgLink={""}
-        // imgLink={products[productIndex].variants[varIndex].imgLink}
-        // />
-        
-
     return (
         <div className={styles.Cart}>
-            {mapCart()}
+            {productsInCart.map(product => {
+                const productIndex = itemIndex(product.productId);
+                const varIndex = variantIndex(productIndex, product.variant);
+                // console.log(product.variant),
+                // console.log(productIndex),
+                // console.log(varIndex),
+
+                return (
+                    <CartCard
+                        key={products[productIndex].id}
+                        product={products[productIndex]} 
+                        quantity={product.quantity}
+                        variant={product.variant}
+                        // imgLink={""}
+                        imgLink={products[productIndex].variants[varIndex].imgLink}
+                    />
+                    )
+                }
+                )
+            }
         </div> 
-    );
+    )
 };
 
 export default Cart;

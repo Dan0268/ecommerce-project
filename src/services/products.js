@@ -73,3 +73,5 @@ export const deleteProduct = async (id) => {
     const prod = firestore.collection("cart").doc(id);
     await prod.delete();
 }
+
+export default products;

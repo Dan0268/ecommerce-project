@@ -25,11 +25,11 @@ const Product = () => {
             {product ? (
                 <div className={styles.Product}>
                 <ProductCard
-                    // key={product.id}
+                    key={product.id}
                     product={product}        
                 />
                 <ProductSelector 
-                    // key={product.id}
+                    key={product.id}
                     product={product}
                     />
                 </div>            

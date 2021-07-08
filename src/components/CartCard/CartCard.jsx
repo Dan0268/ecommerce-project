@@ -1,7 +1,12 @@
 import styles from "./CartCard.module.scss";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import UpdateQuantity from "../UpdateQuantity";
+import { useEffect, useState  } from "react";
 
 const CartCard = ({ product, quantity, variant, imgLink }) => {
+    useEffect(() =>{
+
+    }, [ product, quantity, variant]);
     // console.log(product);
     // console.log(quantity);
     // console.log(variant);
@@ -18,6 +23,14 @@ const CartCard = ({ product, quantity, variant, imgLink }) => {
                         <img src={imgLink} alt={variant} height="300" />
                     </div>    
                 </div>
+            </div>
+            <div>
+                <UpdateQuantity
+                    key={product.id}
+                    product={product}
+                    quantity={quantity}
+                    variant={variant}
+                    />
             </div>
         </div>
     )

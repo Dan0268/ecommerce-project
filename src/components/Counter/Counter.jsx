@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const Counter = ({ onChange, value = 0 }) => {
+const Counter = ({ onChange, value = 1 }) => {
     const [count, setCount] = useState(value);
     
     useEffect(() => {
@@ -9,8 +9,8 @@ const Counter = ({ onChange, value = 0 }) => {
 
     const decrement = (e) => {
         if (count === 0) {
-            return;
-        }
+            setCount(0);
+        } else
         setCount(count - 1);
     };
 

@@ -11,7 +11,6 @@ import Cart from './containers/Cart';
 const App = () => {
     return (
         <>
-            
             <Router>
                 <Header />
                 <Switch>
