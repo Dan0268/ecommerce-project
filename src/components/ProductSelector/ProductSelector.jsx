@@ -9,7 +9,7 @@ const ProductSelector = ({ product }) => {
     const [cartId, setCartId] = useState("eOlYq5Ls5F0dQz7aURLA")
     const [productId, setProductId] = useState(product.id);
     const [newQuantity, setNewQuantity] = useState(1);
-    const [newVariant, setNewVariant] = useState(product.variants[0]);
+    const [newVariant, setNewVariant] = useState(product.variants[0].variant);
 
     const [cartArr, setCartArr] = useState([]);
 
@@ -20,13 +20,13 @@ const ProductSelector = ({ product }) => {
         }
         getCart()
     }, []);
-    console.log(cartArr);
+    // console.log(cartArr);
     const handleCountChange = (count) => {
         setNewQuantity(count);
     };
 
-    const handleVariantChange = (variant) => {
-        setNewVariant(variant);
+    const handleVariantChange = (item) => {
+        setNewVariant(item);
     }
 
     const handleSubmit = () => {
@@ -36,11 +36,11 @@ const ProductSelector = ({ product }) => {
             variant: newVariant,            
         };
 
-        const sameItemIndex = cartArr.findIndex((item, index) => item.productId === product.id && item.variant === newVariant && item.quantity === newQuantity);
+        const sameItemIndex = cartArr.findIndex((item, index) => (item.productId === product.id && item.variant === newVariant && item.quantity === newQuantity));
 
-        const itemIndex = cartArr.findIndex((item, index) => item.productId === productId);
+        const itemIndex = cartArr.findIndex((item, index) => (item.productId === productId));
 
-        const varIndex = cartArr.findIndex((item, index) => item.variant === newVariant);
+        const varIndex = cartArr.findIndex((item, index) => (item.variant === newVariant));
 
         
         if (newQuantity === 0) {} 
@@ -48,11 +48,11 @@ const ProductSelector = ({ product }) => {
             cartArr.push(cartItem);
             console.log(cartItem);
             updateRecords("cart", cartId, cartArr);
-        } else if (itemIndex >= 0 && varIndex >= 0) {
+        } else if (sameItemIndex >= 0) {
             cartArr[itemIndex].quantity += newQuantity;
             console.log(cartItem);
             updateRecords("cart", cartId, cartArr);
-        } else if (itemIndex >= 0 && varIndex === -1) {
+        } else if (itemIndex >= 0 && itemIndex != varIndex) {
             cartArr.push(cartItem);
             console.log(cartItem);
             updateRecords("cart", cartId, cartArr);
