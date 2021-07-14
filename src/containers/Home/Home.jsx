@@ -20,7 +20,7 @@ const Home = () => {
     //     await deleteProduct(id);
     //     getData();
     // }
-    console.log(products);
+    // console.log(products);
     return (
         <div className={styles.Home}>
             {products.map(product => (

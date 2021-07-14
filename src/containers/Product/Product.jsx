@@ -4,7 +4,6 @@ import { getProduct } from "../../services/products";
 
 import styles from "./Product.module.scss";
 import ProductCard from "../../components/ProductCard";
-import ProductSelector from "../../components/ProductSelector";
 
 const Product = () => {
     const { id } = useParams();
@@ -28,10 +27,6 @@ const Product = () => {
                     key={product.id}
                     product={product}        
                 />
-                <ProductSelector 
-                    key={product.id}
-                    product={product}
-                    />
                 </div>            
             ) : (
                 <p>
